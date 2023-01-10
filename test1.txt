@@ -1,0 +1,38 @@
+
+  SELECT maMonAn, tenMonAn, giaBan, soLuong, thanhTien 
+  FROM  ChiTietHD ct, BanAn ba, HoaDonTT hd 
+  WHERE ba.maBan = hd.maBan and ba.trangThai = N'Có khách' and hd.trangThaiTT = '0'
+
+  SELECT ct.maMonAn, ct.tenMonAn, ct.giaBan, ct.soLuong, ct.thanhTien FROM  ChiTietHD ct, BanAn ba
+  WHERE ct.maBan= 1 and ba.trangThai = N'Có khách' and ct.daTT=1
+
+  SELECT f.tenMon, bi.soLuong, f.giaTien, f.giaTien*bi.soLuong AS totalPrice 
+  FROM dbo.ChiTietHD AS bi, dbo.HoaDonTT AS b, dbo.MonAn AS f
+  WHERE bi.maHoaDon = b.maHD AND bi.maMonAn = f.maMon AND b.trangThaiTT = 0 AND b.maBan = 1
+
+  SELECT * FROM dbo.Bill WHERE idTable = 12 AND status = 0
+
+  
+  SELECT * FROM dbo.HoaDonTT WHERE maBan = 3 AND trangThai = 0
+
+  SELECT f.name, bi.count, f.price, f.price*bi.count AS totalPrice 
+  FROM dbo.BillInfo AS bi, dbo.Bill AS b, dbo.Food AS f 
+  WHERE bi.idBill = b.id AND bi.idFood = f.id AND b.status = 0 AND b.idTable = 12
+
+
+
+  SELECT bi.maMonAn ,f.tenMon, bi.soLuongMon, f.giaTien, f.giaTien*bi.soLuongMon AS totalPrice 
+  FROM dbo.ChiTietHD AS bi, dbo.HoaDonTT AS b, dbo.MonAn AS f 
+  WHERE bi.maHoaDon = b.maHD AND bi.maMonAn = f.maMon AND b.trangThai = 0 AND b.maBan = 3
+
+
+
+  SELECT * FROM dbo.HoaDonTT WHERE maBan = 2 AND trangThai = 0
+
+  INSERT INTO HoaDonTT(maNhanVien, maBan,ngayVaoHoaDon,ngayXuatHoaDon, trangThai, tongTien,giamGia)  
+  VALUES (2, 3,'2022-06-01', NULL, 0, NULL, 0)
+
+  INSERT INTO ChiTietHD(maHoaDon,maMonAn,soLuongMon)  
+  VALUES ( (SELECT MAX(maHD) FROM dbo.HoaDonTT), 1, 2)
+
+  SELECT MAX(maHD) FROM dbo.HoaDonTT

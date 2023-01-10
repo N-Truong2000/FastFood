@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e2875e4d-5b52-4bd1-9da8-c0da9ea7cc89">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="230"/>
+	<subDataset name="DoAnCoSoTCF" uuid="eea0b04a-0ec6-4079-9124-4f1d678df997">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     ChiTietHD."maHoaDon" AS ChiTietHD_maHoaDon,
+     ChiTietHD."maMonAn" AS ChiTietHD_maMonAn,
+     ChiTietHD."tenMonAn" AS ChiTietHD_tenMonAn,
+     ChiTietHD."giaBan" AS ChiTietHD_giaBan,
+     ChiTietHD."soLuong" AS ChiTietHD_soLuong,
+     ChiTietHD."thanhTien" AS ChiTietHD_thanhTien,
+     HoaDonTT."maHD" AS HoaDonTT_maHD,
+     HoaDonTT."maNhanVien" AS HoaDonTT_maNhanVien,
+     HoaDonTT."ngayXuatHoaDon" AS HoaDonTT_ngayXuatHoaDon,
+     HoaDonTT."tongTien" AS HoaDonTT_tongTien,
+     KhuyenMai."giaKhuyenMai" AS KhuyenMai_giaKhuyenMai
+FROM
+     "dbo"."HoaDonTT" HoaDonTT INNER JOIN "dbo"."ChiTietHD" ChiTietHD ON HoaDonTT."maHD" = ChiTietHD."maHoaDon",
+     "dbo"."KhuyenMai" KhuyenMai]]>
+		</queryString>
+		<field name="ChiTietHD_tenMonAn" class="java.lang.String"/>
+		<field name="ChiTietHD_giaBan" class="java.lang.Double"/>
+		<field name="ChiTietHD_soLuong" class="java.lang.Integer"/>
+		<field name="ChiTietHD_thanhTien" class="java.lang.Double"/>
+		<field name="HoaDonTT_maHD" class="java.lang.Integer"/>
+		<field name="HoaDonTT_ngayXuatHoaDon" class="java.lang.String"/>
+		<field name="HoaDonTT_tongTien" class="java.lang.Double"/>
+		<field name="KhuyenMai_giaKhuyenMai" class="java.lang.Double"/>
+	</subDataset>
+	<parameter name="maHoaDon" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[14]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     ChiTietHD."tenMonAn" AS ChiTietHD_tenMonAn,
+     ChiTietHD."giaBan" AS ChiTietHD_giaBan,
+     ChiTietHD."soLuong" AS ChiTietHD_soLuong,
+     ChiTietHD."thanhTien" AS ChiTietHD_thanhTien,
+     HoaDonTT."maHD" AS HoaDonTT_maHD,
+     HoaDonTT."ngayXuatHoaDon" AS HoaDonTT_ngayXuatHoaDon,
+     HoaDonTT."tongTien" AS HoaDonTT_tongTien,
+     HoaDonTT."giamGia" AS HoaDonTT_giamGia,
+     HoaDonTT."VAT" AS HoaDonTT_VAT
+FROM
+     "dbo"."HoaDonTT" HoaDonTT INNER JOIN "dbo"."ChiTietHD" ChiTietHD ON HoaDonTT."maHD" = ChiTietHD."maHoaDon"
+WHERE
+     maHD = $P{maHoaDon}]]>
+	</queryString>
+	<field name="ChiTietHD_tenMonAn" class="java.lang.String"/>
+	<field name="ChiTietHD_giaBan" class="java.lang.Double"/>
+	<field name="ChiTietHD_soLuong" class="java.lang.Integer"/>
+	<field name="ChiTietHD_thanhTien" class="java.lang.Double"/>
+	<field name="HoaDonTT_maHD" class="java.lang.Integer"/>
+	<field name="HoaDonTT_ngayXuatHoaDon" class="java.lang.String"/>
+	<field name="HoaDonTT_tongTien" class="java.lang.Double"/>
+	<field name="HoaDonTT_giamGia" class="java.lang.Integer"/>
+	<field name="HoaDonTT_VAT" class="java.lang.Integer"/>
+	<variable name="tongTienHD" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{ChiTietHD_thanhTien}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="234" height="51" forecolor="#006666" uuid="6a15990e-2688-4a5e-8b04-74286dc29110"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="40" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Minions Food]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="234" y="0" width="321" height="39" forecolor="#006666" uuid="f0601bf6-19ba-436f-bd4d-9f521f330d39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BILL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="234" y="39" width="321" height="22" forecolor="#006666" uuid="10f95795-4a28-4efd-9f9b-d148bbbad01a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="13" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FAST FOOD - Beverages]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="35" y="0" width="87" height="35" forecolor="#006666" uuid="48696cc1-cee8-455e-9bd0-48f1dfc60771"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="14"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="406" y="0" width="149" height="35" forecolor="#006666" uuid="54412d8d-1b5b-4658-8bec-981063869e76"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HoaDonTT_ngayXuatHoaDon}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="342" y="0" width="64" height="35" forecolor="#006666" uuid="4b7932fa-3949-4e53-9276-919aebb77311"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="14"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="122" y="0" width="112" height="35" forecolor="#006666" uuid="0fe913aa-1669-4ed2-b23f-58e75732bce8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HoaDonTT_maHD}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="35" y="41" width="155" height="20" forecolor="#006666" uuid="785848b0-113f-4ea2-820e-cc2b0812409d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dish name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="41" width="126" height="20" forecolor="#006666" uuid="4d833671-ccf6-4591-801f-dd6c2231007f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unit price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="41" width="90" height="20" forecolor="#006666" uuid="574a648a-b216-47ed-9954-4e11c24a48f7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="439" y="41" width="116" height="20" forecolor="#006666" uuid="81af7ab4-4b48-482c-87b0-84961c60ad63"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="41" width="35" height="20" forecolor="#006666" uuid="7f92ebb2-9704-4dec-8191-ca24ad36e613"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[STT]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<line>
+				<reportElement x="-18" y="0" width="590" height="1" forecolor="#006666" uuid="cd31b91d-7ab5-4947-bbd0-ac85b3c5f1e3"/>
+			</line>
+			<line>
+				<reportElement x="-18" y="34" width="590" height="1" forecolor="#006666" uuid="d3554bb0-4333-43a9-ac46-ab43328d8a0e"/>
+			</line>
+			<textField>
+				<reportElement x="11" y="0" width="24" height="34" forecolor="#006666" uuid="bdb1072d-7d9e-495c-9e46-0eb912c44a44"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="68" y="1" width="122" height="33" forecolor="#006666" uuid="3e9328d2-8a33-42ff-9a7f-c35e41247f2a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ChiTietHD_tenMonAn}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="234" y="0" width="82" height="34" forecolor="#006666" uuid="455013f8-af1e-42d8-86c3-75c90459fdf6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ChiTietHD_giaBan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="0" width="54" height="33" forecolor="#006666" uuid="1fc00ee5-e40f-4d64-8d51-8a4f3292afad"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ChiTietHD_soLuong}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="439" y="0" width="82" height="34" forecolor="#006666" uuid="eddef8ae-561e-49a2-995d-89b9992fc7cb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ChiTietHD_thanhTien}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="429" y="0" width="126" height="14" forecolor="#006666" uuid="abdc2f5f-4efd-4944-8516-ad235088e08b"/>
+				<textElement>
+					<font fontName="Calibri" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="29" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="257" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="118" width="194" height="41" forecolor="#006666" uuid="827158a3-e58f-4174-9e0d-7caceeb063f1"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total(VND) :]]></text>
+			</staticText>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="439" y="0" width="116" height="37" forecolor="#006666" uuid="e9592eda-e3f5-43b8-b9da-e343f9be8add"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tongTienHD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="37" width="194" height="33" forecolor="#006666" uuid="b5f9d25b-afbe-4dee-a40c-e987c9194f0e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="15" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Discount % :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="70" width="194" height="37" forecolor="#006666" uuid="2c5cdf2f-f60d-4b38-9320-95f5c48de69e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="15" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ VAT % :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="482" y="37" width="73" height="33" forecolor="#006666" uuid="01f62c33-adc3-4853-bf64-3793520ae63a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HoaDonTT_giamGia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="70" width="73" height="37" forecolor="#006666" uuid="df010d8c-51fe-404c-9612-7248aa74376e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HoaDonTT_VAT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="419" y="118" width="136" height="41" forecolor="#006666" uuid="e5583d9e-ad5b-45ad-9b21-9cc103b342ea"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="26" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HoaDonTT_tongTien}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="0" width="194" height="37" forecolor="#006666" uuid="6da9e211-4d47-416d-9be4-2372680cc8aa"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sum :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="173" width="555" height="1" forecolor="#006666" uuid="66967fc3-6c99-4b25-872f-ec19e3e78382"/>
+			</line>
+			<staticText>
+				<reportElement x="96" y="188" width="360" height="69" forecolor="#006666" uuid="6f3ddacb-250c-4682-acbf-d067534301f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Please check the information before payment!!!
+
+Thank you and see you soon ^^]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="106" width="555" height="1" forecolor="#006666" uuid="0fd22db2-7c22-4e53-9374-4d137e7bb33d"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>
